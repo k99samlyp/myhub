@@ -14,4 +14,6 @@ public class people {
     String ooo;
 
     int tempclass;
+
+    int masterPushtoTemp;
 }
