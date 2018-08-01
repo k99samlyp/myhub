@@ -12,4 +12,6 @@ public class people {
     int age;
 
     String ooo;
+
+    int tempclass;
 }
