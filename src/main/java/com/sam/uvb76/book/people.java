@@ -13,6 +13,8 @@ public class people {
 
     String ooo;
 
+    int temp;
+
     int tempclass;
 
     static {
