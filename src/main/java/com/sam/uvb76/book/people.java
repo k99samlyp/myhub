@@ -15,5 +15,28 @@ public class people {
 
     int tempclass;
 
-    int masterPushtoTemp;
+    static {
+        //System.out.println("what ? static!");
+    }
+
+
+    public static void main(String[] args) throws ClassNotFoundException{
+
+       // ClassLoader cl = ClassLoader.getSystemClassLoader();
+
+        //cl.getParent().loadClass("com.sam.uvb76.book.Svt");
+       // System.out.println(cl.getParent().getParent());
+        //System.out.println(cl.getParent());
+
+        //System.out.println(cl);
+
+        //Class.forName("com.sam.uvb76.book.Svt");
+
+
+        //Svt s1 = new Svt();
+
+
+
+
+    }
 }
