@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 
+import javax.annotation.Resource;
 import java.beans.ConstructorProperties;
 
 public class Station {
 
     private String name;
 
-    @Autowired
+//    @Autowired
+    @Resource(name = "radio2")
     private Radio radio;
 
     private Radio oldradio;
