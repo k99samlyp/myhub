@@ -1,10 +1,20 @@
 package com.sam.uvb76.book.annotation;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Radio {
 
     private String weight;
 
     private String brand;
+
+    private Radio(){
+        this.brand = "test";
+        this.weight = "98T";
+    }
 
     private Radio(String weight, String brand){
         this.brand = brand;
@@ -13,12 +23,6 @@ public class Radio {
 
     {
         System.out.println("this is from inner block!!!");
-    }
-
-    public static Radio getInstance(String weight, String brand){
-        System.out.println("this is from constractor");
-
-        return new Radio(weight, brand);
     }
 
 

@@ -1,7 +1,9 @@
 package com.sam.uvb76.book.annotation;
 
 import com.sam.uvb76.book.service.Station;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,12 +15,12 @@ public class TestMain {
 
     public static void main(String[] args) throws ClassNotFoundException{
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("annotationApplication.xml");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(UvbConfig.class);
 
-        Station station = applicationContext.getBean("station", Station.class);
+//        BrainBurner brainBurner = applicationContext.getBean(BrainBurner.class);
+        Field field = applicationContext.getBean(Field.class);
 
-        System.out.println(station.getName());
-        System.out.println(station.getRadio().getBrand());
+        System.out.println(field.getBrainBurner().getTowerCount());
 
     }
 }
