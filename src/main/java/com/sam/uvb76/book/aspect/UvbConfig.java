@@ -1,13 +1,13 @@
-package com.sam.uvb76.book.annotation;
+package com.sam.uvb76.book.aspect;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 
-import javax.annotation.Resource;
 import javax.inject.Named;
 
 @Configuration
-@ComponentScan("com.sam.uvb76.book.annotation")
+@ComponentScan("com.sam.uvb76.book.aspect")
+@EnableAspectJAutoProxy
 public class UvbConfig {
 
     @Bean

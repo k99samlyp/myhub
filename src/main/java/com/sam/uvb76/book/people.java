@@ -18,7 +18,7 @@ public class people {
     int tempclass;
 
     static {
-        //System.out.println("what ? static!");
+        System.out.println("what ? static!");
     }
 
 
@@ -36,6 +36,13 @@ public class people {
 
 
         //Svt s1 = new Svt();
+
+
+        String aaa = "123";
+
+        int bbb = Integer.parseInt(aaa);
+
+        System.out.println(bbb);
 
 
 

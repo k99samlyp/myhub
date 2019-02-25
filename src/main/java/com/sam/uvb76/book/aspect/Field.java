@@ -1,21 +1,24 @@
-package com.sam.uvb76.book.annotation;
+package com.sam.uvb76.book.aspect;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 public class Field {
 
     @Inject
-    @Named("new")
+    @Qualifier("old")
     @Lazy
     private BrainBurner brainBurner;
 
     public BrainBurner getBrainBurner() {
         return brainBurner;
+    }
+
+    public void prtCore(){
+        System.out.println("hahah");
     }
 }
