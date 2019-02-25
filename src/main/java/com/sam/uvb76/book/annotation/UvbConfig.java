@@ -11,14 +11,15 @@ public class UvbConfig {
 
     @Bean
     @Primary
-    @Qualifier("old")
-    @Scope("singleton")
+    @Named("old")
+//    @Scope("singleton")
     public BrainBurner getNewBrainBurner(){
         return new BrainBurner();
     }
 
     @Bean
-    @Qualifier("new")
+    @Named("new")
+    @Scope("prototype")
     public BrainBurner getNew2BrainBurner(){
         return new BrainBurner("cnb",8);
     }

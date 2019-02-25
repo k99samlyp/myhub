@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
 
-    <bean id="radio2" class="com.sam.uvb76.book.service.Radio" factory-method="getInstance">
+    <bean id="radio2" class="com.sam.uvb76.book.service.Radio" factory-method="getInstance" primary="true">
         <constructor-arg name="brand" value="uvb76"/>
         <constructor-arg name="weight" value="9700T"/>
     </bean>

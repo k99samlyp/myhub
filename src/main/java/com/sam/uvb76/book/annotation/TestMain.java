@@ -22,5 +22,7 @@ public class TestMain {
 
         System.out.println(field.getBrainBurner().getTowerCount());
 
+        field.checkSame();
+
     }
 }

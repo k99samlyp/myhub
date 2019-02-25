@@ -3,16 +3,21 @@ package com.sam.uvb76.book.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.beans.ConstructorProperties;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 
 public class Station {
 
     private String name;
 
-//    @Autowired
-    @Resource(name = "radio2")
+    //@Autowired
+    @Inject
     private Radio radio;
 
     private Radio oldradio;
@@ -47,7 +52,9 @@ public class Station {
     }
 
 
-    @Autowired
+//    @Autowired
+//    @Qualifier("oldradio")
+    @Inject
     @Qualifier("oldradio")
     public void setOldradio(Radio oldradio) {
         this.oldradio = oldradio;
