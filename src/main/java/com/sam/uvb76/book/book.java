@@ -3,6 +3,8 @@ package com.sam.uvb76.book;
 import com.sam.uvb76.book.service.Radio;
 import com.sam.uvb76.book.service.Station;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -20,6 +22,7 @@ public class book {
 //        Radio radio2 = applicationContext.getBean("radio", Radio.class);
 
         Station station = applicationContext.getBean("station", Station.class);
+
 
         //System.out.println(radio1 == radio2);
         System.out.println(station.getName());
