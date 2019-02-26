@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * Created by LiYangpan on 2018-12-26  10:38.
@@ -58,6 +60,8 @@ public class DataCheckUtils {
 
     static AtomicInteger ai = new AtomicInteger(100);
 
+    static AtomicStampedReference<Integer> asp = new AtomicStampedReference<Integer>(100,9800);
+
     static volatile int sum = 100;
 
 
@@ -95,46 +99,72 @@ public class DataCheckUtils {
 //
 //            }
 //        }).start();
+        Random random = new Random();
 
-//        for (int i = 0; i< 10; i++){
+        for (int i = 0; i< 30; i++){
 //            new Thread(() -> {
 //                ai.addAndGet(10);
 //                System.out.println(Thread.currentThread().getId() + "----" + ai.get());
 //            }).start();
-//            new Thread(() -> {
-//                ai.addAndGet(-10);
-//                System.out.println(Thread.currentThread().getId() + "----" + ai.get());
-//            }).start();
-//        }
 
-        new Thread(() -> {
-            while (sum > 0){
-              sum -= 10;
-              log.info(Thread.currentThread().getId() + "----" +"减少" + sum);
+            new Thread(() -> {
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(random.nextInt() & 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-        }).start();
+//                System.out.println(Thread.currentThread().getId() + "----" + ai.get() + "-----" + ai.compareAndSet(100,200));
+                System.out.println(Thread.currentThread().getId() + "----" + asp.getReference().toString() + "-----" + asp.compareAndSet(100,200,9800,asp.getStamp() + 1) + "----" + asp.getStamp());
+
+            }).start();
+        }
 
         new Thread(() -> {
-            int local = sum;
-            while (sum > 0){
-                local = sum;
-
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                if (local != sum){
-                    log.info(Thread.currentThread().getId() + "不一样了" + sum);
-                    //local = sum;
-                }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+//            ai.set(100);
+            //System.out.println(Thread.currentThread().getId() + "-----" + ai.compareAndSet(200,100));
+
+            asp.set(100,asp.getStamp());
+//            System.out.println(Thread.currentThread().getId() + "-----"   + "----" + asp.getStamp());
+
+
+
         }).start();
+
+
+//        new Thread(() -> {
+//            while (sum > 0){
+//              sum -= 10;
+//              log.info(Thread.currentThread().getId() + "----" +"减少" + sum);
+//                try {
+//                    Thread.sleep(200);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        new Thread(() -> {
+//            int local;
+//            while (sum > 0){
+//                local = sum;
+//
+//                try {
+//                    Thread.sleep(50);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (local != sum){
+//                    log.info(Thread.currentThread().getId() + "不一样了" + sum);
+//                    //local = sum;
+//                }
+//            }
+//        }).start();
     }
 }
