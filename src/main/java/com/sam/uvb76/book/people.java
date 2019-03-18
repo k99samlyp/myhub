@@ -1,5 +1,8 @@
 package com.sam.uvb76.book;
 
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+
 /**
  * Created by LiYangpan on 2018/7/29  4:26 PM.
  * with INTELLIJ IDEA on rmbp osx 10.11
@@ -18,13 +21,48 @@ public class people {
     int tempclass;
 
     static {
-        System.out.println("what ? static!");
+        //System.out.println("what ? static!");
+    }
+
+    static class Game extends WeakReference<String>{
+        byte[] value;
+
+        Game(String a, byte[] b){
+            super(a);
+            this.value = b;
+        }
     }
 
 
-    public static void main(String[] args) throws ClassNotFoundException{
 
-       // ClassLoader cl = ClassLoader.getSystemClassLoader();
+
+
+    public static void main(String[] args) throws ClassNotFoundException, InterruptedException {
+
+
+//        Game g1 = new Game("tom", new byte[1024 * 1024 * 2]);
+//
+//        //System.out.println(g1.get());
+//
+//        System.out.println(g1.value == null);
+//
+//        g1.clear();
+//
+//        g1.value = null;
+//
+//        g1.value = new byte[1024 * 1024 * 4];
+//
+//        g1.value = null;
+//
+//        System.gc();
+//
+//        System.out.println(g1.value == null);
+
+
+        //0----------------------------------------------------------------------------------------
+
+
+        // ClassLoader cl = ClassLoader.getSystemClassLoader();
 
         //cl.getParent().loadClass("com.sam.uvb76.book.Svt");
        // System.out.println(cl.getParent().getParent());
@@ -38,13 +76,45 @@ public class people {
         //Svt s1 = new Svt();
 
 
-        String aaa = "123";
+//        String aaa = "123";
+//
+//        int bbb = Integer.parseInt(aaa);
+//
+//        System.out.println(bbb);
 
-        int bbb = Integer.parseInt(aaa);
-
-        System.out.println(bbb);
 
 
+
+//        SoftReference ccc = new SoftReference(new byte[1024 * 1024 * 6]);
+//
+//        System.out.println(ccc.get() == null);
+//
+//        byte[] bytes = new byte[1024 * 1024 * 5];
+//
+//        //System.gc();
+//
+//        System.out.println(ccc.get() == null);
+
+
+
+
+        WeakReference<people> wf = new WeakReference<>(new people());
+
+        System.out.println(wf.get() == null);
+
+        System.gc();
+
+        System.out.println(wf.get() == null);
+//
+//
+//
+//        WeakReference<String> ref = new WeakReference<String>(new String("zbc"));
+//
+//        System.out.println(ref.get() == null);
+//
+//        System.gc();
+//
+//        System.out.println(ref.get() == null);
 
 
     }
