@@ -1,7 +1,8 @@
 package com.sam.uvb76.book.netty.client;
 
 import com.alibaba.fastjson.JSON;
-import com.sam.uvb76.book.netty.message.Message;
+import com.sam.uvb76.book.netty.message.ChatMessages;
+import com.sam.uvb76.book.netty.message.LoginMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -10,7 +11,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.apache.logging.log4j.util.Chars;
 
 import java.nio.charset.Charset;
 import java.util.Scanner;
@@ -50,30 +50,27 @@ public class Client {
         bootstrap.connect("127.0.0.1",9900).addListener(future -> {
 
             if(future.isSuccess()){
-                System.out.println("启动输入线程");
+
                 Channel channel = ((ChannelFuture) future).channel();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true){
-                            ByteBuf byteBuf = channel.alloc().buffer();
-                            System.out.println("输入消息发送至服务端: ");
-                            Scanner scanner = new Scanner(System.in);
-                            String line = scanner.nextLine();
 
-                            Message msg = new Message();
+                System.out.println("连接成功，客户端开始登陆.....");
+                ByteBuf byteBuf = channel.alloc().buffer();
 
-                            msg.setMsg_type(Message.MSG_TYPE.text);
-                            msg.setId(UUID.randomUUID().toString());
-                            msg.setContent(line);
-                            msg.setLength(line.length());
-                            String jstring = JSON.toJSONString(msg);
+                LoginMessage loginMessage  = new LoginMessage();
+                loginMessage.setId(UUID.randomUUID().toString());
+                loginMessage.setTime(System.currentTimeMillis());
+                loginMessage.setUsername("lyp");
+                loginMessage.setLength(98);
+                loginMessage.setPassword("374886");
+                loginMessage.setToken("9900");
 
-                            byteBuf.writeBytes(jstring.getBytes(Charset.forName("utf-8")));
-                            channel.writeAndFlush(byteBuf);
-                        }
-                    }
-                }).start();
+                byteBuf.writeByte(1);
+                byteBuf.writeBytes(JSON.toJSONString(loginMessage).getBytes(Charset.forName("utf-8")));
+                channel.writeAndFlush(byteBuf);
+
+
+                System.out.println("连接成功，客户端开始登陆.....");
+
             }
             else{
                 System.out.println("连接失败！");

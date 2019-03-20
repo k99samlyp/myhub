@@ -1,7 +1,7 @@
 package com.sam.uvb76.book.netty;
 
 import com.alibaba.fastjson.JSON;
-import com.sam.uvb76.book.netty.message.Message;
+import com.sam.uvb76.book.netty.message.ChatMessages;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
@@ -30,12 +30,16 @@ public class SecondServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf readBuf = (ByteBuf) msg;
 
-        System.out.println(readBuf.toString(Charset.forName("utf-8")));
+        System.out.println("协议类型：" + readBuf.getByte(0));
+
+        System.out.println("数据内容：" + readBuf.toString(Charset.forName("utf-8")));
+
+        readBuf.skipBytes(1);
 
         Object o1 = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
 
-        Message msgRecv = JSON.parseObject(o1.toString(),Message.class);
+        ChatMessages msgRecv = JSON.parseObject(o1.toString(),ChatMessages.class);
 
-        System.out.println(new Date() +  " 处理了一下 --> " + msgRecv.toString());
+        System.out.println(System.currentTimeMillis() +  " 负载数据内容 --> " + msgRecv.getContent());
     }
 }

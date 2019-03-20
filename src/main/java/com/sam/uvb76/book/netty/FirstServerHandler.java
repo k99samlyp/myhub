@@ -1,5 +1,7 @@
 package com.sam.uvb76.book.netty;
 
+import com.alibaba.fastjson.JSON;
+import com.sam.uvb76.book.netty.message.LoginMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
@@ -45,13 +47,38 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 
         System.out.println(new Date() +  " Client --> " + readBuf.toString(Charset.forName("utf-8")));
 
+        if (readBuf.getByte(0) == 1){
+
+            readBuf.skipBytes(1);
+
+            Object foo = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
+
+            LoginMessage lm = JSON.parseObject(foo.toString(),LoginMessage.class);
+
+            ByteBuf retm = ctx.alloc().buffer();
+
+            if ("lyp".equals(lm.getUsername()) && "374886".equals(lm.getPassword())){
+                retm.writeByte(0);
+            }
+            else {
+                retm.writeByte(-1);
+            }
+
+            ctx.channel().writeAndFlush(retm);
+        }
+        else {
+            ctx.fireChannelRead(msg);
+        }
+
+
+
 //        ByteBuf byteBuf = ctx.alloc().buffer();
 //
 //        byteBuf.writeBytes(readBuf);
 //
 //        ctx.channel().writeAndFlush(byteBuf);
 
-        ctx.fireChannelRead(msg);
+        //ctx.fireChannelRead(msg);
 
     }
 }

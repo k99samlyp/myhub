@@ -1,8 +1,6 @@
 package com.sam.uvb76.book;
 
 import com.alibaba.fastjson.JSON;
-import com.sam.uvb76.book.netty.message.Message;
-
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 
@@ -110,10 +108,10 @@ public class people {
 //        System.out.println(wf.get() == null);
 
 
-        String aaa = "{\"content\":\"66\",\"id\":\"ab6b768c-6702-44e6-8eb4-c080fd1b981d\",\"length\":2,\"msg_type\":\"text\"}";
-        Message msgRecv = JSON.parseObject(aaa,Message.class);
-
-        msgRecv.toString();
+//        String aaa = "{\"content\":\"66\",\"id\":\"ab6b768c-6702-44e6-8eb4-c080fd1b981d\",\"length\":2,\"msg_type\":\"text\"}";
+//        Message msgRecv = JSON.parseObject(aaa,Message.class);
+//
+//        msgRecv.toString();
 //
 //
 //

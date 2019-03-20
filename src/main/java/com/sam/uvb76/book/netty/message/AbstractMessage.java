@@ -5,33 +5,26 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by LiYangpan on 2019-03-20  09:51.
  * with INTELLIJ IDEA on rmbp osx 10.11
  * 描述:
+ * @author sam
  */
 
 @Getter
 @Setter
 @ToString
-public class Message implements Serializable {
+public class AbstractMessage implements Serializable {
 
-    public enum MSG_TYPE{
-        login,
-
-        text,
-
-        error;
-    }
-
+    String version = "1859-1";
 
     String id;
 
-    MSG_TYPE msg_type;
-
-    String content;
-
     int length;
+
+    long time;
 
 }
