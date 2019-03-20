@@ -1,9 +1,7 @@
 package com.sam.uvb76.book.netty;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -37,23 +35,13 @@ public class Uvb76Server {
              */
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new FirstServerHandler());
+                ch.pipeline().addLast(new FirstServerHandler()).addLast(new SecondServerHandler());
 
             }
         });
 
         serverBootstrap.bind(9900);
 
-
-
-
     }
-
-
-
-
-
-
-
 
 }

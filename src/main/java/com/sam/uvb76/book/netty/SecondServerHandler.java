@@ -1,5 +1,7 @@
 package com.sam.uvb76.book.netty;
 
+import com.alibaba.fastjson.JSON;
+import com.sam.uvb76.book.netty.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
@@ -13,21 +15,7 @@ import java.util.Date;
  * with INTELLIJ IDEA on rmbp osx 10.11
  * 描述:
  */
-public class FirstServerHandler extends ChannelInboundHandlerAdapter {
-
-    /**
-     * Calls {@link ChannelHandlerContext#fireChannelActive()} to forward
-     * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-     * <p>
-     * Sub-classes may override this method to change behavior.
-     *
-     * @param ctx
-     */
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-
-    }
+public class SecondServerHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * Calls {@link ChannelHandlerContext#fireChannelRead(Object)} to forward
@@ -40,18 +28,14 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-
         ByteBuf readBuf = (ByteBuf) msg;
 
-        System.out.println(new Date() +  " Client --> " + readBuf.toString(Charset.forName("utf-8")));
+        System.out.println(readBuf.toString(Charset.forName("utf-8")));
 
-//        ByteBuf byteBuf = ctx.alloc().buffer();
-//
-//        byteBuf.writeBytes(readBuf);
-//
-//        ctx.channel().writeAndFlush(byteBuf);
+        Object o1 = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
 
-        ctx.fireChannelRead(msg);
+        Message msgRecv = JSON.parseObject(o1.toString(),Message.class);
 
+        System.out.println(new Date() +  " 处理了一下 --> " + msgRecv.toString());
     }
 }
