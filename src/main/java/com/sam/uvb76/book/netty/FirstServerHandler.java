@@ -43,32 +43,32 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
-        ByteBuf readBuf = (ByteBuf) msg;
-
-        System.out.println(new Date() +  " Client --> " + readBuf.toString(Charset.forName("utf-8")));
-
-        if (readBuf.getByte(0) == 1){
-
-            readBuf.skipBytes(1);
-
-            Object foo = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
-
-            LoginMessage lm = JSON.parseObject(foo.toString(),LoginMessage.class);
-
-            ByteBuf retm = ctx.alloc().buffer();
-
-            if ("lyp".equals(lm.getUsername()) && "374886".equals(lm.getPassword())){
-                retm.writeByte(0);
-            }
-            else {
-                retm.writeByte(-1);
-            }
-
-            ctx.channel().writeAndFlush(retm);
-        }
-        else {
-            ctx.fireChannelRead(msg);
-        }
+//        ByteBuf readBuf = (ByteBuf) msg;
+//
+//        System.out.println(new Date() +  " Client --> " + readBuf.toString(Charset.forName("utf-8")));
+//
+//        if (readBuf.getByte(0) == 1){
+//
+//            readBuf.skipBytes(1);
+//
+//            Object foo = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
+//
+//            LoginMessage lm = JSON.parseObject(foo.toString(),LoginMessage.class);
+//
+//            ByteBuf retm = ctx.alloc().buffer();
+//
+//            if ("lyp".equals(lm.getUsername()) && "374886".equals(lm.getPassword())){
+//                retm.writeByte(0);
+//            }
+//            else {
+//                retm.writeByte(-1);
+//            }
+//
+//            ctx.channel().writeAndFlush(retm);
+//        }
+//        else {
+//            ctx.fireChannelRead(msg);
+//        }
 
 
 

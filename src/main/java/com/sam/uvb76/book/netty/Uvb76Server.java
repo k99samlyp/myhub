@@ -35,7 +35,7 @@ public class Uvb76Server {
              */
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new FirstServerHandler()).addLast(new SecondServerHandler());
+                ch.pipeline().addLast(new PacketDecoder()).addLast(new FirstServerHandler()).addLast(new SecondServerHandler());
 
             }
         });
