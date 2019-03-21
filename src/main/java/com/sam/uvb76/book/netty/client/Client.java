@@ -1,7 +1,6 @@
 package com.sam.uvb76.book.netty.client;
 
 import com.alibaba.fastjson.JSON;
-import com.sam.uvb76.book.netty.message.ChatMessages;
 import com.sam.uvb76.book.netty.message.LoginMessage;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -13,7 +12,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.nio.charset.Charset;
-import java.util.Scanner;
 import java.util.UUID;
 
 /**
@@ -64,13 +62,10 @@ public class Client {
                 loginMessage.setPassword("374886");
                 loginMessage.setToken("9900");
 
-                byteBuf.writeByte(1);
+                byteBuf.writeByte(0x01);
                 byteBuf.writeBytes(JSON.toJSONString(loginMessage).getBytes(Charset.forName("utf-8")));
+                byteBuf.writeBytes(new byte[]{0x23,0x23});
                 channel.writeAndFlush(byteBuf);
-
-
-                System.out.println("连接成功，客户端开始登陆.....");
-
             }
             else{
                 System.out.println("连接失败！");

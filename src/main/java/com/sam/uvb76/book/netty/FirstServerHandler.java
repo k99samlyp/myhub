@@ -46,6 +46,11 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 //        ByteBuf readBuf = (ByteBuf) msg;
 //
 //        System.out.println(new Date() +  " Client --> " + readBuf.toString(Charset.forName("utf-8")));
+
+
+
+        System.out.println("12321331");
+
 //
 //        if (readBuf.getByte(0) == 1){
 //

@@ -28,18 +28,18 @@ public class SecondServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf readBuf = (ByteBuf) msg;
-
-        System.out.println("协议类型：" + readBuf.getByte(0));
-
-        System.out.println("数据内容：" + readBuf.toString(Charset.forName("utf-8")));
-
-        readBuf.skipBytes(1);
-
-        Object o1 = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
-
-        ChatMessages msgRecv = JSON.parseObject(o1.toString(),ChatMessages.class);
-
-        System.out.println(System.currentTimeMillis() +  " 负载数据内容 --> " + msgRecv.getContent());
+//        ByteBuf readBuf = (ByteBuf) msg;
+//
+//        System.out.println("协议类型：" + readBuf.getByte(0));
+//
+//        System.out.println("数据内容：" + readBuf.toString(Charset.forName("utf-8")));
+//
+//        readBuf.skipBytes(1);
+//
+//        Object o1 = JSON.parse(readBuf.toString(Charset.forName("utf-8")));
+//
+//        ChatMessages msgRecv = JSON.parseObject(o1.toString(),ChatMessages.class);
+//
+//        System.out.println(System.currentTimeMillis() +  " 负载数据内容 --> " + msgRecv.getContent());
     }
 }

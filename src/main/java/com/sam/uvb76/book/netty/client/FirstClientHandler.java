@@ -60,7 +60,7 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
                 public void run() {
                     while (true){
                         ByteBuf byteBuf = ctx.channel().alloc().buffer();
-//                        byteBuf.retain(20);
+                        byteBuf.retain(20);
                         System.out.println("输入消息发送至服务端: ");
                         Scanner scanner = new Scanner(System.in);
                         String line = scanner.nextLine();
@@ -75,14 +75,18 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
                         msg.setToToken("9800");
                         String jstring = JSON.toJSONString(msg);
 
-                        byteBuf.writeByte(2);
-                        byteBuf.writeBytes(jstring.getBytes(Charset.forName("utf-8")));
-                        ctx.channel().writeAndFlush(byteBuf);
-//                        ctx.channel().writeAndFlush(byteBuf);
-//                        ctx.channel().writeAndFlush(byteBuf);
-//                        ctx.channel().writeAndFlush(byteBuf);
-//                        ctx.channel().writeAndFlush(byteBuf);
 
+                        byteBuf.writeByte(0x02);
+                        byteBuf.writeBytes(jstring.getBytes(Charset.forName("utf-8")));
+                        byteBuf.writeBytes(new byte[]{0x23,0x23});
+                        byteBuf.writeByte(0x02);
+                        byteBuf.writeBytes(jstring.getBytes(Charset.forName("utf-8")));
+                        byteBuf.writeBytes(new byte[]{0x23,0x23});
+                        byteBuf.writeByte(0x02);
+                        byteBuf.writeBytes(jstring.getBytes(Charset.forName("utf-8")));
+                        byteBuf.writeBytes(new byte[]{0x23,0x23});
+
+                        ctx.channel().writeAndFlush(byteBuf);
                     }
                 }
             }).start();

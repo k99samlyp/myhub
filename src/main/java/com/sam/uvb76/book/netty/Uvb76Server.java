@@ -1,10 +1,15 @@
 package com.sam.uvb76.book.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.Unpooled;
+import io.netty.buffer.UnpooledHeapByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  * Created by LiYangpan on 2019-03-18  14:56.
@@ -14,13 +19,15 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  */
 public class Uvb76Server {
 
-    public static void main(String[] args) throws ClassNotFoundException, InterruptedException {
+    public static void main(String[] args) {
 
         NioEventLoopGroup bossLoopGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerLoopGroup = new NioEventLoopGroup();
 
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
+
+        final DelimiterBasedFrameDecoder delimiterBasedFrameDecoder = new DelimiterBasedFrameDecoder(2048,true, Unpooled.copiedBuffer(new byte[]{0x23,0x23}));
 
         serverBootstrap.group(bossLoopGroup,workerLoopGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
 
@@ -35,7 +42,7 @@ public class Uvb76Server {
              */
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new PacketDecoder()).addLast(new FirstServerHandler()).addLast(new SecondServerHandler());
+                ch.pipeline().addLast(delimiterBasedFrameDecoder).addLast(new PacketDecoder()).addLast(new ServerLoginHandler()).addLast(new ServerChatHandler());
 
             }
         });

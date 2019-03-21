@@ -11,12 +11,19 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.nio.charset.Charset;
 import java.util.List;
 
+
+/**
+ * The type Packet decoder.
+ *
+ * @author sam
+ */
 public class PacketDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
 
         System.out.println("Decoder输出：" +byteBuf.toString(Charset.forName("utf-8")));
+
         int msgtype = byteBuf.getByte(0);
 
         AbstractMessage resmsg = new AbstractMessage();
@@ -32,6 +39,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
         }
 
         list.add(resmsg);
+        byteBuf.clear();
 
     }
 }
