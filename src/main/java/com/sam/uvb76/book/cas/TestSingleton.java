@@ -14,8 +14,8 @@ public class TestSingleton {
         for (int i = 0; i< 10; i++){
 
             new Thread(() -> {
-                //SingletonFuller singletonFuller = SingletonFuller.getInstance();
-                //SingletonHungry singletonHungry = SingletonHungry.getInstance();
+//                SingletonFuller singletonFuller = SingletonFuller.getInstance();
+//                SingletonHungry singletonHungry = SingletonHungry.getInstance();
                 //SingletonFullerSyn singletonFullerSyn = null;
                 //SingletonInnerClass singletonInnerClass = SingletonInnerClass.getInstance();
 
@@ -27,6 +27,7 @@ public class TestSingleton {
 //                }
                 //System.out.println(Thread.currentThread().getId() + "-------我看到的长度是：" + singletonFullerSyn.name.length());
 
+//                System.out.println(singletonFuller.getClass().getClassLoader());
 
             }).start();
         }

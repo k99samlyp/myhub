@@ -12,22 +12,40 @@ public class Stoper {
 
     public static void main(String[] args) throws ClassNotFoundException, InterruptedException {
 
-        byte[] aaa = new byte[1 * 1024 * 1024];
+//        byte[] aaa = new byte[1 * 1024 * 1024];
+//
+//        String bbb = "haha";
+//
+//        List<String> nnn = new ArrayList<>();
+//
+//        int i = 100000;
+//
+//        while (true){
+//            //String.valueOf(i).intern();
+//            String bbb2 = new String(String.valueOf(i));
+//            nnn.add(bbb2.intern());
+//        }
 
-        String bbb = "haha";
+        System.out.println("跳出1111");
 
-        List<String> nnn = new ArrayList<>();
+        retry:
+        for (;;) {
+//            int wc = workerCountOf(c);
+//            if (wc >= CAPACITY ||
+//                    wc >= (core ? corePoolSize : maximumPoolSize))
+//                return false;
+//            if (compareAndIncrementWorkerCount(c))
+//                break retry;
+//            c = ctl.get();  // Re-read ctl
+//            if (runStateOf(c) != rs)
+//                continue retry;
+//            // else CAS failed due to workerCount change; retry inner loop
 
-        int i = 100000;
-
-        while (true){
-            //String.valueOf(i).intern();
-            String bbb2 = new String(String.valueOf(i));
-            nnn.add(bbb2.intern());
+            break retry;
+//            continue retry;
         }
 
-
-
+        System.out.println("跳出");
 
     }
 

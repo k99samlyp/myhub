@@ -7,6 +7,21 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:annotation-config/>
+<!--    <context:annotation-config/>-->
+    <bean id="radio" class="com.sam.uvb76.book.spring.ioc.RadioBean">
+        <property name="name" value="${name}"/>
+    </bean>
+    <bean id="processorLow" class="com.sam.uvb76.book.spring.ioc.ProcessorLow"></bean>
+    <bean id="processor" class="com.sam.uvb76.book.spring.ioc.Processor"></bean>
+
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:uvb76.properties</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

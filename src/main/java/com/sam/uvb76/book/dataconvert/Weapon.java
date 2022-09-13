@@ -1,6 +1,6 @@
-package com.sam.uvb76.book;
+package com.sam.uvb76.book.dataconvert;
 
-public interface Weapon {
+public class Weapon {
 
 //    default void ppp(){
 //
@@ -11,7 +11,5 @@ public interface Weapon {
 //    private void mna(){
 //
 //    }
-
-    void aaa();
 
 }

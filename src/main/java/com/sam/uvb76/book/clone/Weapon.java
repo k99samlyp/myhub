@@ -4,16 +4,16 @@ import com.sam.uvb76.book.aspect.Radio;
 
 import javax.inject.Inject;
 
-public class BrainBurner implements Cloneable {
+public class Weapon implements Cloneable {
 
     private String name;
 
-    public BrainBurner(String name) {
+    public Weapon(String name) {
         this.name = name;
     }
 
-    public BrainBurner() {
-        this.name = "X16";
+    public Weapon() {
+        this.name = "AK74";
     }
 
     public String getName() {

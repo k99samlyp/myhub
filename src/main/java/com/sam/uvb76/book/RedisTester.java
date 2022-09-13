@@ -10,11 +10,15 @@ public class RedisTester {
 
         Random random = new Random(90);
 
-        Jedis ja = new Jedis("127.0.0.1",7002);
+        Jedis ja = new Jedis("127.0.0.1",7100);
 
         while (true){
             ja.append(String.valueOf(System.currentTimeMillis()),String.valueOf(random.nextInt()));
-            //Thread.sleep(5);
+            Thread.sleep(1000);
+
+            
+
+
         }
 
 

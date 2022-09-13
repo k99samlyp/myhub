@@ -1,8 +1,13 @@
 package com.sam.uvb76.book;
 
 import com.alibaba.fastjson.JSON;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.net.URL;
+import java.net.URLDecoder;
 
 /**
  * Created by LiYangpan on 2018/7/29  4:26 PM.
@@ -38,7 +43,31 @@ public class people {
 
 
 
-    public static void main(String[] args) throws ClassNotFoundException, InterruptedException {
+    public static void main(String[] args) throws ClassNotFoundException, InterruptedException, UnsupportedEncodingException {
+
+        ThreadLocal threadLocal = new ThreadLocal();
+
+        threadLocal.set("11111");
+
+//        File f1 = new File("/Users/sam/中文＋嗯嗯嗯");
+//
+//        f1.mkdir();
+//
+//        System.out.println(f1.exists());
+
+
+//        URL aaa = Thread.currentThread().getContextClassLoader().getResource("");
+
+//        System.out.println(aaa);
+
+
+
+//        System.out.println(URLDecoder.decode("中文+123131", "utf-8"));
+//        System.out.println(System.getProperty("user.dir"));
+
+
+
+
 
 
 //        Game g1 = new Game("tom", new byte[1024 * 1024 * 2]);

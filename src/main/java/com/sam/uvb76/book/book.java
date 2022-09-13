@@ -14,20 +14,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class book {
 
+    static int capacity = 16;
+
+    static int HASH_INCREMENT = 0x61c88647;
+
+    static int getNextHash(){
+        HASH_INCREMENT += 0x61c88647;
+        return HASH_INCREMENT;
+    }
+
     public static void main(String[] args) throws ClassNotFoundException{
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("base.xml");
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("base.xml");
+//
+//        //Radio radio1 = applicationContext.getBean("radio", Radio.class);
+////        Radio radio2 = applicationContext.getBean("radio", Radio.class);
+//
+//        Station station = applicationContext.getBean("station", Station.class);
+//
+//
+//        //System.out.println(radio1 == radio2);
+//        System.out.println(station.getName());
+//        System.out.println(station.getRadio().getBrand());
+//        System.out.println(station.getOldradio().getWeight());
 
-        //Radio radio1 = applicationContext.getBean("radio", Radio.class);
-//        Radio radio2 = applicationContext.getBean("radio", Radio.class);
 
-        Station station = applicationContext.getBean("station", Station.class);
+        System.out.println(getNextHash() & (capacity - 1));
+        System.out.println(getNextHash() & (capacity - 1));
+        System.out.println(getNextHash() & (capacity - 1));
+        System.out.println(getNextHash() & (capacity - 1));
+        System.out.println(getNextHash() & (capacity - 1));
+        System.out.println(getNextHash() & (capacity - 1));
 
-
-        //System.out.println(radio1 == radio2);
-        System.out.println(station.getName());
-        System.out.println(station.getRadio().getBrand());
-        System.out.println(station.getOldradio().getWeight());
 
     }
 }
